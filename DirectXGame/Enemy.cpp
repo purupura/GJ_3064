@@ -25,6 +25,7 @@ void Enemy::Initialize() {
 void Enemy::Update() {
 	Vector2 move = {1.0, 1.0};
 	EnemyPosition_ = sprite_->GetPosition();
+	EnemyPosition_ = sprite2_->GetPosition();
 	worldDimensionSwitching_->Update();
 
 	switch (phase_) {
@@ -44,7 +45,7 @@ void Enemy::Update() {
 	}
 
 	sprite_->SetPosition(EnemyPosition_);
-
+	sprite2_->SetPosition(EnemyPosition_);
 	for (EnemyBullet* bullet : bullets_) {
 		bullet->Update();
 	}
@@ -55,8 +56,8 @@ void Enemy::Draw() {
 	if (worldDimensionSwitching_->isWorldDimensionSwitching_ == true) {
 		sprite_->Draw();
 	}
-	if (worldDimensionSwitching_->isWorldDimensionSwitching_ == true) {
-		sprite_->Draw();
+	if (worldDimensionSwitching_->isWorldDimensionSwitching_ == false) {
+		sprite2_->Draw();
 	}
 
 	for (EnemyBullet* bullet : bullets_) {
