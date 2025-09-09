@@ -7,8 +7,11 @@ void GameScene::Initialize() {
 	audio_ = KamataEngine::Audio::GetInstance();            // 同上
 	camera_ = new Camera();                                 // ポインタなのでnewが必要（使うなら）
 
-	textureHandle_ = KamataEngine::TextureManager::Load("sample.png");
-	TestSprite_ = Sprite::Create(textureHandle_, {0, 0});
+	textureHandle_ = KamataEngine::TextureManager::Load("backGround.png");
+	backGroundSprite_ = Sprite::Create(textureHandle_, {0, 0});
+
+	textureHandle2_ = KamataEngine::TextureManager::Load("frontFrame.png");
+	frontFrameSprite_ = Sprite::Create(textureHandle2_, {0, 0});
 
 	enemy_ = new Enemy();
 
@@ -37,6 +40,7 @@ void GameScene::Draw() {
 	/// ここに背景スプライトの描画処理を追加できる
 	/// </summary>
 
+	backGroundSprite_->Draw();
 	// スプライト描画後処理
 	KamataEngine::Sprite::PostDraw();
 	// 深度バッファクリア
@@ -62,10 +66,9 @@ void GameScene::Draw() {
 	/// ここに前景スプライトの描画処理を追加できる
 	/// </summary>
 	// スプライト描画後処理
-	// TestSprite_->Draw();
-
+	
 	enemy_->Draw();
-
+	frontFrameSprite_->Draw();
 	// スプライト描画後処理
 	KamataEngine::Sprite::PostDraw();
 

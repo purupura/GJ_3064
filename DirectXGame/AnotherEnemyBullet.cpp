@@ -1,16 +1,13 @@
-#include "EnemyBullet.h"
+#include "AnotherEnemyBullet.h"
 
-
-
-EnemyBullet::~EnemyBullet() {
+AnotherEnemyBullet::~AnotherEnemyBullet() {
 	delete sprite_;
 	delete sprite2_;
 }
 
-void EnemyBullet::Initialize(Vector2 pos, Vector2 pos2) {
+void AnotherEnemyBullet::Initialize(Vector2 pos, Vector2 pos2) {
 	dxCommon_ = KamataEngine::DirectXCommon::GetInstance();
 	input_ = KamataEngine::Input::GetInstance();
-
 	textureHandle_ = KamataEngine::TextureManager::Load("Enemy/Enemy1Bullet.png");
 
 	sprite_ = Sprite::Create(textureHandle_, pos);
@@ -21,21 +18,18 @@ void EnemyBullet::Initialize(Vector2 pos, Vector2 pos2) {
 
 }
 
-void EnemyBullet::Update() { Enemy1Bullet(); }
+void AnotherEnemyBullet::Update() { Enemy1Bullet(); }
 
-void EnemyBullet::Draw() {
+void AnotherEnemyBullet::Draw() {
 	Vector4 color = {1, 1, 1, 1};
-	sprite2_->GetColor();
+	sprite_->GetColor();
 	color = {1, 1, 1, 0.2f};
-	sprite2_->SetColor(color);
-
+	sprite_->SetColor(color);
 	sprite_->Draw();
-
 	sprite2_->Draw();
 }
 
-void EnemyBullet::Enemy1Bullet() {
-
+void AnotherEnemyBullet::Enemy1Bullet() {
 	Vector2 move = {10.0, 1.0};
 
 	Vector2 pos = sprite_->GetPosition();
@@ -47,4 +41,3 @@ void EnemyBullet::Enemy1Bullet() {
 	AnotherBulletPos.x -= 5;
 	sprite2_->SetPosition(AnotherBulletPos);
 }
-

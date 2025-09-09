@@ -37,6 +37,8 @@ private:
 	Enemy* enemy_ = nullptr;
 
 	uint32_t textureHandle_ = 0;
-	Sprite* TestSprite_ = nullptr;
+	Sprite* backGroundSprite_ = nullptr;
+	uint32_t textureHandle2_ = 0;
+	Sprite* frontFrameSprite_ = nullptr;
 	bool isFinished_ = false;
 };

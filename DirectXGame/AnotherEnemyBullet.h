@@ -2,12 +2,12 @@
 #include "kamataEngine.h"
 #include <assert.h>
 
-using namespace KamataEngine;
 
-class EnemyBullet {
+using namespace KamataEngine;
+class AnotherEnemyBullet {
 
 public:
-	~EnemyBullet();
+	~AnotherEnemyBullet();
 
 	void Initialize(Vector2 pos, Vector2 pos2);
 
@@ -16,9 +16,6 @@ public:
 	void Draw();
 
 	void Enemy1Bullet();
-
-
-
 
 
 private:

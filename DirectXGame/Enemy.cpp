@@ -6,6 +6,9 @@ Enemy::~Enemy() {
 	for (EnemyBullet* bullet : bullets_) {
 		delete bullet;
 	}
+	for (AnotherEnemyBullet* anotherBullet : anotherBullets_) {
+		delete anotherBullet;
+	}
 }
 
 void Enemy::Initialize() {
@@ -27,61 +30,99 @@ void Enemy::Update() {
 	EnemyPosition_ = sprite_->GetPosition();
 	EnemyPosition_ = sprite2_->GetPosition();
 	worldDimensionSwitching_->Update();
-
-	switch (phase_) {
-	case Enemy::Phase::Approach:
-		// とりあえず左まで移動
-		EnemyPosition_.x -= move.x;
-		if (EnemyPosition_.x <= 300) {
-			phase_ = Phase::Move;
-		}
-		break;
-	case Enemy::Phase::Move:
-		// 既定の位置に到着で行動変化　とりあえず右まで移動
-		EnemyPosition_.x += move.x;
-		break;
-	default:
-		break;
-	}
-
+	startTimer_--;
 	sprite_->SetPosition(EnemyPosition_);
 	sprite2_->SetPosition(EnemyPosition_);
-	for (EnemyBullet* bullet : bullets_) {
-		bullet->Update();
+	if (startTimer_ < 0) {
+
+		switch (phase_) {
+		case Enemy::Phase::Approach:
+			// 攻撃動作
+			approach();
+			break;
+		case Enemy::Phase::Move:
+			// 既定の位置に到着で行動変化　とりあえず右まで移動
+			EnemyPosition_.x += move.x;
+			break;
+		default:
+			break;
+		}
+
+
+
+		for (EnemyBullet* bullet : bullets_) {
+			bullet->Update();
+		}
+
+		for (AnotherEnemyBullet* anotherBullet : anotherBullets_) {
+			anotherBullet->Update();
+		}
 	}
-	approach();
+
 }
 
 void Enemy::Draw() {
 	if (worldDimensionSwitching_->isWorldDimensionSwitching_ == true) {
 		sprite_->Draw();
+		for (EnemyBullet* bullet : bullets_) {
+			bullet->Draw();
+		}
 	}
 	if (worldDimensionSwitching_->isWorldDimensionSwitching_ == false) {
 		sprite2_->Draw();
+		for (AnotherEnemyBullet* anotherBullet : anotherBullets_) {
+			anotherBullet->Draw();
+		}
 	}
 
-	for (EnemyBullet* bullet : bullets_) {
-		bullet->Draw();
-	}
+
 }
 
 void Enemy::Fire() {
 
 	EnemyBullet* newBullet_ = new EnemyBullet();
 
-	newBullet_->Initialize(EnemyPosition_, EnemyPosition_);
+	newBullet_->Initialize({EnemyPosition_.x + 1280, EnemyPosition_.y}, {EnemyPosition_.x + 1280, EnemyPosition_.y});
 
 	bullets_.push_back(newBullet_);
+
+	
+}
+
+void Enemy::AnotherFire() {
+	AnotherEnemyBullet* newAnotherBullet_ = new AnotherEnemyBullet();
+
+	newAnotherBullet_->Initialize({EnemyPosition_.x + 1280, EnemyPosition_.y}, {EnemyPosition_.x + 1280, EnemyPosition_.y});
+
+	anotherBullets_.push_back(newAnotherBullet_);
 }
 
 void Enemy::approach() {
-	// 発射タイマーを減らす
-	fireTimer_ -= 1;
-	// 規定時間に達した
-	if (fireTimer_ <= 0) {
-		// 弾発射
-		Fire();
-		// 発射タイマーを初期化
-		fireTimer_ = kFireInterval;
-	}
+
+		// 発射タイマーを減らす
+		fireTimer_ -= 1;
+		// 規定時間に達した
+		if (fireTimer_ <= 0) {
+			// 弾発射
+			Fire();
+		    AnotherFire();
+			// 発射タイマーを初期化
+			fireTimer_ = kFireInterval;
+		}
+
+
+}
+
+void Enemy::AnotherApproach() {
+
+		// 発射タイマーを減らす
+		fireTimer_ -= 1;
+		// 規定時間に達した
+		if (fireTimer_ <= 0) {
+			// 弾発射
+		
+			// 発射タイマーを初期化
+			fireTimer_ = kFireInterval;
+		}
+	
 }

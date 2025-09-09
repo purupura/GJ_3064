@@ -1,5 +1,6 @@
 #pragma once
 #include "EnemyBullet.h"
+#include "AnotherEnemyBullet.h"
 #include "WorldDimensionSwitching.h"
 #include "kamataEngine.h"
 #include <assert.h>
@@ -20,10 +21,12 @@ public:
 	enum class Phase { Approach, Move };
 
 	void Fire();
+	void AnotherFire();
 
 	static const int kFireInterval = 60; // 発射間隔
 
 	void approach();
+	void AnotherApproach();
 
 private:
 	WorldTransform worldTransform_;
@@ -39,10 +42,18 @@ private:
 
 	Phase phase_ = Phase::Approach;
 
-	Vector2 EnemyPosition_ = {1280.0f, 300.0f};
+	Vector2 EnemyPosition_ = {0.0f, 0.0f};
 
 	// 弾
 	std::list<EnemyBullet*> bullets_;
+	std::list<AnotherEnemyBullet*> anotherBullets_;
+
+	EnemyBullet* enemyBullet_ = nullptr;	
+	AnotherEnemyBullet* anotherEnemyBullet_ = nullptr;
+
+	EnemyBullet* enemyBullets_ = nullptr;
+	AnotherEnemyBullet* anotherEnemyBullets_ = nullptr;
 
 	int32_t fireTimer_ = 0; // 発射タイマー
+	int32_t startTimer_ = 60*2; // タイマー
 };

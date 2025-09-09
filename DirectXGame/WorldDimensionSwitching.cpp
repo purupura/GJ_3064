@@ -13,4 +13,5 @@ void WorldDimensionSwitching::Update() {
 	if (input_->TriggerKey(DIK_X)) {
 		isWorldDimensionSwitching_ = false;
 	}
+
 }
