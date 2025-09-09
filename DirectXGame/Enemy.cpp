@@ -43,19 +43,8 @@ void Enemy::Update() {
 	sprite2_->SetPosition(EnemyPosition_);
 	if (startTimer_ < 0) {
 
-		switch (phase_) {
-		case Enemy::Phase::Approach:
-			// 攻撃動作
-			enemyBullet_->Update();
-			anotherEnemyBullet_->Update();
-			break;
-		case Enemy::Phase::Move:
-			// 既定の位置に到着で行動変化　とりあえず右まで移動
-			EnemyPosition_.x += move.x;
-			break;
-		default:
-			break;
-		}
+		enemyBullet_->Update();
+		anotherEnemyBullet_->Update();
 
 		
 
