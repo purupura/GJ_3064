@@ -3,12 +3,10 @@
 
 Enemy::~Enemy() {
 	delete sprite_;
-	for (EnemyBullet* bullet : bullets_) {
-		delete bullet;
-	}
-	for (AnotherEnemyBullet* anotherBullet : anotherBullets_) {
-		delete anotherBullet;
-	}
+	delete sprite2_;
+	delete worldDimensionSwitching_;
+	delete enemyBullet_;
+	delete anotherEnemyBullet_;
 }
 
 void Enemy::Initialize() {
@@ -23,6 +21,16 @@ void Enemy::Initialize() {
 
 	worldDimensionSwitching_ = new WorldDimensionSwitching();
 	worldDimensionSwitching_->Initialize();
+
+	std::srand((unsigned int)std::time(nullptr));
+	randam = (float)(rand() % 300); 
+	anotherRandam = (float)(rand() % 300); 
+
+	enemyBullet_ = new EnemyBullet();
+	enemyBullet_->Initialize({EnemyPosition_.x + 1280, EnemyPosition_.y + randam}, {EnemyPosition_.x + 1280, EnemyPosition_.y + anotherRandam});
+
+	anotherEnemyBullet_ = new AnotherEnemyBullet();
+	anotherEnemyBullet_->Initialize({EnemyPosition_.x + 1280, EnemyPosition_.y + randam}, {EnemyPosition_.x + 1280, EnemyPosition_.y + anotherRandam});
 }
 
 void Enemy::Update() {
@@ -38,7 +46,8 @@ void Enemy::Update() {
 		switch (phase_) {
 		case Enemy::Phase::Approach:
 			// 攻撃動作
-			approach();
+			enemyBullet_->Update();
+			anotherEnemyBullet_->Update();
 			break;
 		case Enemy::Phase::Move:
 			// 既定の位置に到着で行動変化　とりあえず右まで移動
@@ -48,15 +57,13 @@ void Enemy::Update() {
 			break;
 		}
 
+		
 
-
-		for (EnemyBullet* bullet : bullets_) {
-			bullet->Update();
-	}
-
-		for (AnotherEnemyBullet* anotherBullet : anotherBullets_) {
-			anotherBullet->Update();
-		}
+		//if (anotherEnemyBullet_ && anotherEnemyBullet_->IsDead()) {
+		//	delete anotherEnemyBullet_;
+		//	anotherEnemyBullet_ = nullptr;
+		//}
+	
 	}
 
 }
@@ -64,15 +71,15 @@ void Enemy::Update() {
 void Enemy::Draw() {
 	if (worldDimensionSwitching_->isWorldDimensionSwitching_ == true) {
 		sprite_->Draw();
-		for (EnemyBullet* bullet : bullets_) {
-			bullet->Draw();
-		}
+
+		enemyBullet_->Draw();
+		
 	}
 	if (worldDimensionSwitching_->isWorldDimensionSwitching_ == false) {
 		sprite2_->Draw();
-		for (AnotherEnemyBullet* anotherBullet : anotherBullets_) {
-			anotherBullet->Draw();
-		}
+
+		anotherEnemyBullet_->Draw();
+		
 	}
 
 
@@ -80,21 +87,12 @@ void Enemy::Draw() {
 
 void Enemy::Fire() {
 
-	EnemyBullet* newBullet_ = new EnemyBullet();
-
-	newBullet_->Initialize({EnemyPosition_.x + 1280, EnemyPosition_.y}, {EnemyPosition_.x + 1280, EnemyPosition_.y});
-
-	bullets_.push_back(newBullet_);
 
 	
 }
 
 void Enemy::AnotherFire() {
-	AnotherEnemyBullet* newAnotherBullet_ = new AnotherEnemyBullet();
 
-	newAnotherBullet_->Initialize({EnemyPosition_.x + 1280, EnemyPosition_.y}, {EnemyPosition_.x + 1280, EnemyPosition_.y});
-
-	anotherBullets_.push_back(newAnotherBullet_);
 }
 
 void Enemy::approach() {

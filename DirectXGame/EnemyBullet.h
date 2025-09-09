@@ -17,8 +17,7 @@ public:
 
 	void Enemy1Bullet();
 
-
-
+	enum class Phase { first, second,therd };
 
 
 private:
@@ -29,7 +28,10 @@ private:
 	Sprite* sprite_ = nullptr;
 	uint32_t textureHandle2_ = 0;
 	Sprite* sprite2_ = nullptr;
+	Phase phase_ = Phase::first;
 
 	Input* input_ = nullptr;
+	bool isAppear_ = false;
+	bool isDown_ = false;
 
 };

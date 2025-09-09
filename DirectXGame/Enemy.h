@@ -44,15 +44,11 @@ private:
 
 	Vector2 EnemyPosition_ = {0.0f, 0.0f};
 
-	// 弾
-	std::list<EnemyBullet*> bullets_;
-	std::list<AnotherEnemyBullet*> anotherBullets_;
 
 	EnemyBullet* enemyBullet_ = nullptr;	
 	AnotherEnemyBullet* anotherEnemyBullet_ = nullptr;
-
-	EnemyBullet* enemyBullets_ = nullptr;
-	AnotherEnemyBullet* anotherEnemyBullets_ = nullptr;
+	float randam = 0;
+	float anotherRandam = 0;
 
 	int32_t fireTimer_ = 0; // 発射タイマー
 	int32_t startTimer_ = 60*2; // タイマー

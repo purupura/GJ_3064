@@ -1,6 +1,7 @@
 #pragma once
 #include "kamataEngine.h"
 #include <assert.h>
+#include "EnemyBullet.h"
 
 
 using namespace KamataEngine;
@@ -16,7 +17,7 @@ public:
 	void Draw();
 
 	void Enemy1Bullet();
-
+	enum class Phase { first, second, therd };
 
 private:
 	WorldTransform worldTransform_;
@@ -26,7 +27,9 @@ private:
 	Sprite* sprite_ = nullptr;
 	uint32_t textureHandle2_ = 0;
 	Sprite* sprite2_ = nullptr;
-
+	Phase phase_ = Phase::first;
 	Input* input_ = nullptr;
+	bool isAppear_ = false;
+	bool isDown_ = false;
 
 };
