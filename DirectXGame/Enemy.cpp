@@ -52,7 +52,7 @@ void Enemy::Update() {
 
 		for (EnemyBullet* bullet : bullets_) {
 			bullet->Update();
-		}
+	}
 
 		for (AnotherEnemyBullet* anotherBullet : anotherBullets_) {
 			anotherBullet->Update();
