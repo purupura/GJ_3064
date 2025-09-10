@@ -39,4 +39,13 @@ private:
 	uint32_t textureHandle_ = 0;
 	Sprite* TestSprite_ = nullptr;
 	bool isFinished_ = false;
+
+	//音楽
+	uint32_t soundDataHandle_ = 0;
+	uint32_t soundDataHandle2_ = 0;
+	uint32_t playSoundId_ = 0;
+	uint32_t playSoundId2_ = 0;
+	bool isBGMPlay_ = false;
+	bool isBGMPlay2_ = false;
+	
 };

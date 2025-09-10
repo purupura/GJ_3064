@@ -13,6 +13,10 @@ void GameScene::Initialize() {
 	enemy_ = new Enemy();
 
 	enemy_->Initialize();
+
+	soundDataHandle_ = audio_->LoadWave("Audio/start.mp3");
+	soundDataHandle2_ = audio_->LoadWave("Audio/BGM.mp3");
+	
 }
 
 void GameScene::Update() {
@@ -22,6 +26,12 @@ void GameScene::Update() {
 		isFinished_ = true;
 	}
 
+
+	if (!isBGMPlay_) {
+		playSoundId_ = audio_->PlayWave(soundDataHandle2_, true, 0.1f);
+		isBGMPlay_ = true;
+	}
+	
 	enemy_->Update();
 }
 
