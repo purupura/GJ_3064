@@ -20,24 +20,24 @@ void Player::Initialize() {
 }
 
 void Player::Update() {
-	Vector2 move = { 1.0, 1.0 };
-	PlayerPosition_ = sprite_->GetPosition();
-	worldDimensionSwitching_->Update();
-	if (input_->PushKey(DIK_A)) {
-		
-
-	}
-	if (input_->PushKey(DIK_D)) {
-		worldTransform_.translation_.x += 1.0f;
-	}
-	if (input_->PushKey(DIK_W)) {
-		worldTransform_.translation_.y += 1.0f;
-	}
-	if (input_->PushKey(DIK_S)) {
-		worldTransform_.translation_.y -= 1.0f;
-	}
-	sprite_->SetPosition(PlayerPosition_);
 	
+	 // 入力処理 (WASDで移動)
+    const float speed = 5.0f;  // 移動速度（調整可）
+    if (input_->PushKey(DIK_W)) {
+        PlayerPosition_.y -= speed;  // 上
+    }
+    if (input_->PushKey(DIK_S)) {
+        PlayerPosition_.y += speed;  // 下
+    }
+    if (input_->PushKey(DIK_A)) {
+        PlayerPosition_.x -= speed;  // 左
+    }
+    if (input_->PushKey(DIK_D)) {
+        PlayerPosition_.x += speed;  // 右
+    }
+
+	sprite_->SetPosition(PlayerPosition_);
+	sprite2_->SetPosition(PlayerPosition_);
 	for (PlayerBullet* bullet : bullets_) {
 		bullet->Update();
 	
