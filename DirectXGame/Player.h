@@ -5,6 +5,8 @@
 #include "WorldDimensionSwitching.h"
 #include "PlayerBullet.h"
 #include "Enemy.h"
+#include "EnemyBullet.h"
+#include "AnotherEnemyBullet.h"
 using namespace KamataEngine;
 
 class Player
