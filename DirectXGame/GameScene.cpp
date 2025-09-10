@@ -16,6 +16,10 @@ void GameScene::Initialize() {
 	enemy_ = new Enemy();
 
 	enemy_->Initialize();
+
+	player_ = new Player();
+
+	player_->Initialize();
 }
 
 void GameScene::Update() {
@@ -26,6 +30,7 @@ void GameScene::Update() {
 	}
 
 	enemy_->Update();
+	player_->Update();
 }
 
 void GameScene::Draw() {
@@ -67,6 +72,7 @@ void GameScene::Draw() {
 	/// </summary>
 	// スプライト描画後処理
 	
+	player_->Draw();
 	enemy_->Draw();
 	frontFrameSprite_->Draw();
 	// スプライト描画後処理

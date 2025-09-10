@@ -2,6 +2,7 @@
 #include "Enemy.h"
 #include "KamataEngine.h"
 #include "WorldDimensionSwitching.h"
+#include "Player.h"
 
 using namespace KamataEngine;
 
@@ -35,6 +36,7 @@ private:
 	Audio* audio_ = nullptr;
 	Camera* camera_ = nullptr;
 	Enemy* enemy_ = nullptr;
+	Player* player_ = nullptr;
 
 	uint32_t textureHandle_ = 0;
 	Sprite* backGroundSprite_ = nullptr;
