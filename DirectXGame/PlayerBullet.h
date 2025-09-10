@@ -1,6 +1,8 @@
 #pragma once
 #include "kamataEngine.h"
 #include <assert.h>
+#include "WorldDimensionSwitching.h"
+
 
 using namespace KamataEngine;
 class PlayerBullet
@@ -25,5 +27,6 @@ private:
 	uint32_t textureHandle2_ = 0;
 	Sprite* sprite2_ = nullptr;
 	Input* input_ = nullptr;
+	WorldDimensionSwitching* worldDimensionSwitching_ = nullptr;
 };
 

@@ -43,6 +43,8 @@ void Player::Update() {
 	sprite2_->SetPosition(PlayerPosition_);
 
 	
+
+	
 	for (PlayerBullet* bullet : bullets_) {
 		bullet->Update();
 	
@@ -63,14 +65,30 @@ void Player::Update() {
         bullet->Update();
     }
 
-    // --- ここで画面外の弾を削除 ---
-    bullets_.remove_if([](PlayerBullet* bullet) {
-        if (bullet->IsOutOfScreen()) {
-            delete bullet;
-            return true;  // remove対象
-        }
-        return false;
-    });
+    //// --- ここで画面外の弾を削除 ---
+    //  bullets_.remove_if([&](PlayerBullet* bullet) {
+    //    bool erase = false;
+
+    //    // 画面外チェック
+    //    if (bullet->IsOutOfScreen()) {
+    //        erase = true;
+    //    }
+
+    //    // 敵との当たり判定
+    //    if (enemy && !enemy->IsDead()) {
+    //        if (CheckCollision(bullet->GetPosition(), bullet->GetRadius(),
+    //                           enemy->GetPosition(), enemy->GetRadius())) {
+    //            erase = true;
+    //            enemy->OnHit();  // 敵のHPを減らす
+    //        }
+    //    }
+
+    //    if (erase) {
+    //        delete bullet;
+    //        return true;
+    //    }
+    //    return false;
+    //});
 }
 
 void Player::Draw() {
@@ -100,4 +118,15 @@ void Player::Fire() {
 	bullets_.push_back(newBullet);
 	fireTimer_ = kFireInterval;
 }
+
+//void Player::CheckCollision(Vector2 posA, float radiusA, Vector2 posB, float radiusB)
+//{
+//	float dx = posA.x - posB.x;
+//    float dy = posA.y - posB.y;
+//    float distanceSq = dx * dx + dy * dy;
+//    float radiusSum = radiusA + radiusB;
+//	
+//}
+
+
 

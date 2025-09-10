@@ -1,5 +1,4 @@
 #include "PlayerBullet.h"
-
 PlayerBullet::~PlayerBullet() {}
 
 void PlayerBullet::Initialize(Vector2 pos, Vector2 pos2) {
@@ -9,14 +8,25 @@ void PlayerBullet::Initialize(Vector2 pos, Vector2 pos2) {
 	sprite_ = Sprite::Create(textureHandle_, pos);
 	textureHandle2_ = KamataEngine::TextureManager::Load("Player/Player1Bullet_Another.png");
 	sprite2_ = Sprite::Create(textureHandle2_, pos2);
+	worldDimensionSwitching_ = new WorldDimensionSwitching();
+	worldDimensionSwitching_->Initialize();
 }
 
-void PlayerBullet::Update() { Player1Bullet(); }
+void PlayerBullet::Update() { 
+
+	Player1Bullet(); 
+
+	worldDimensionSwitching_->Update();
+}
 
 void PlayerBullet::Draw() {
 	if (input_->PushKey(DIK_G)) {
+		if (worldDimensionSwitching_->isWorldDimensionSwitching_ == true) {
 		sprite_->Draw();
-	    sprite2_->Draw();
+	}
+	    if (worldDimensionSwitching_->isWorldDimensionSwitching_ == false) {
+		sprite2_->Draw();
+	}
 	}
 	
 }
@@ -40,6 +50,7 @@ bool PlayerBullet::IsOutOfScreen() {
 
     // 弾の座標
 	Vector2 pos = sprite_->GetPosition();
+	Vector2 pos2 = sprite2_->GetPosition();
 
     if (pos.x < 0 || pos.x > screenWidth || pos.y < 0 || pos.y > screenHeight) {
         return true;

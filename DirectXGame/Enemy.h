@@ -28,6 +28,13 @@ public:
 	void approach();
 	void AnotherApproach();
 
+	bool IsDead() const { return isDead_; }
+
+	void OnHit();
+
+	Vector2 GetPosition() { return EnemyPosition_; }
+    float GetRadius() { return 32.0f; }
+
 private:
 	WorldTransform worldTransform_;
 	DirectXCommon* dxCommon_ = nullptr;
@@ -52,4 +59,7 @@ private:
 
 	int32_t fireTimer_ = 0; // 発射タイマー
 	int32_t startTimer_ = 60*2; // タイマー
+
+	int hp_ = 0;
+	bool isDead_ = false;
 };

@@ -31,6 +31,10 @@ void Enemy::Initialize() {
 
 	anotherEnemyBullet_ = new AnotherEnemyBullet();
 	anotherEnemyBullet_->Initialize({EnemyPosition_.x + 1280, EnemyPosition_.y + randam}, {EnemyPosition_.x + 1280, EnemyPosition_.y + anotherRandam});
+
+	 hp_ = 10;
+
+	 
 }
 
 void Enemy::Update() {
@@ -55,10 +59,16 @@ void Enemy::Update() {
 	
 	}
 
+	if (hp_ <= 0) {
+            isDead_ = true;
+        }
+
 }
 
 void Enemy::Draw() {
-	if (worldDimensionSwitching_->isWorldDimensionSwitching_ == true) {
+	
+	if (isDead_ == false) {
+		if (worldDimensionSwitching_->isWorldDimensionSwitching_ == true) {
 		sprite_->Draw();
 
 		enemyBullet_->Draw();
@@ -70,7 +80,7 @@ void Enemy::Draw() {
 		anotherEnemyBullet_->Draw();
 		
 	}
-
+	}
 
 }
 
@@ -113,3 +123,13 @@ void Enemy::AnotherApproach() {
 		}
 	
 }
+
+void Enemy::OnHit()
+{
+	 hp_ -= 1; // 弾が当たったら HP 減少
+        if (hp_ <= 0) {
+            isDead_ = true;
+        }
+}
+
+

@@ -4,6 +4,7 @@
 #include <list>
 #include "WorldDimensionSwitching.h"
 #include "PlayerBullet.h"
+#include "Enemy.h"
 using namespace KamataEngine;
 
 class Player
@@ -21,9 +22,11 @@ public:
 
 	void Fire();
 
+	//void CheckCollision(Vector2 posA, float radiusA, Vector2 posB, float radiusB);
+
 	static const int kFireInterval = 60; // 発射間隔
 
-	void approach();
+
 private:
 	WorldTransform worldTransform_;
 	DirectXCommon* dxCommon_ = nullptr;
