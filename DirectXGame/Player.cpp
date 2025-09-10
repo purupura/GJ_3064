@@ -27,16 +27,27 @@ void Player::Update() {
 	 // 入力処理 (WASDで移動)
     const float speed = 5.0f;  // 移動速度（調整可）
     if (input_->PushKey(DIK_W)) {
-        PlayerPosition_.y -= speed;  // 上
+		if (PlayerPosition_.y > 0) {
+			PlayerPosition_.y -= speed;  // 上
+		}
     }
     if (input_->PushKey(DIK_S)) {
-        PlayerPosition_.y += speed;  // 下
+		if (PlayerPosition_.y < 330) {
+			PlayerPosition_.y += speed;  // 下
+		}
+        
     }
     if (input_->PushKey(DIK_A)) {
-        PlayerPosition_.x -= speed;  // 左
+		if (PlayerPosition_.x > 0) {
+			PlayerPosition_.x -= speed; 
+		}
+         // 左
     }
     if (input_->PushKey(DIK_D)) {
-        PlayerPosition_.x += speed;  // 右
+		if (PlayerPosition_.x < 800) {
+			PlayerPosition_.x += speed;  // 右
+		}
+        
     }
 
 	sprite_->SetPosition(PlayerPosition_);
