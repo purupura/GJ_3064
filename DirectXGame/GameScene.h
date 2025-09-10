@@ -48,5 +48,14 @@ private:
 	Sprite* frontFrameSprite_ = nullptr;
 	bool isFinished_ = false;
 	bool isOver_ = false;
-	float Cleartime_ = 60.0f*60.0f;
+	float Cleartime_ = 60.0f*10.0f;
+
+		// 音楽
+	uint32_t soundDataHandle_ = 0;
+	uint32_t soundDataHandle2_ = 0;
+	uint32_t playSoundId_ = 0;
+	uint32_t playSoundId2_ = 0;
+	bool isBGMPlay_ = false;
+	bool isBGMPlay2_ = false;
+	uint32_t seHandle_ = 0;
 };

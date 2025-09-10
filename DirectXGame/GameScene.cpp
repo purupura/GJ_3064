@@ -21,6 +21,15 @@ void GameScene::Initialize() {
 
 	player_->Initialize();
 
+	
+	soundDataHandle_ = audio_->LoadWave("Audio/start.mp3");
+	soundDataHandle2_ = audio_->LoadWave("Audio/BGM.mp3");
+
+	if (!audio_->IsPlaying(seHandle_)) {
+		seHandle_ = audio_->PlayWave(soundDataHandle2_, true, 1.0f);
+	}
+
+
 }
 
 
@@ -30,6 +39,7 @@ void GameScene::Update() {
 	Cleartime_--;
 	if (Cleartime_ <= 0) {
 		isFinished_ = true;
+		audio_->StopWave(seHandle_);
 	}
 
 	enemy_->Update();
