@@ -32,7 +32,7 @@ void Player::Update() {
 		}
     }
     if (input_->PushKey(DIK_S)) {
-		if (PlayerPosition_.y < 330) {
+		if (PlayerPosition_.y < 320) {
 			PlayerPosition_.y += speed;  // 下
 		}
         
