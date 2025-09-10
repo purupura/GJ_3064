@@ -5,7 +5,7 @@ void ClearScene::Initialize() {
 	dxCommon_ = KamataEngine::DirectXCommon::GetInstance();
 	input_ = KamataEngine::Input::GetInstance();
 
-	textureHandle_ = KamataEngine::TextureManager::Load("debugfont.png");
+	textureHandle_ = KamataEngine::TextureManager::Load("Clear.png");
 	clearSprite_ = Sprite::Create(textureHandle_, {0, 0});
 }
 

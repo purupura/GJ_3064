@@ -5,7 +5,7 @@ void TitleScene::Initialize() {
 	dxCommon_ = KamataEngine::DirectXCommon::GetInstance();
 	input_ = KamataEngine::Input::GetInstance();
 
-	textureHandle_ = KamataEngine::TextureManager::Load("uvChecker.png");
+	textureHandle_ = KamataEngine::TextureManager::Load("title.png");
 	titleSprite_ = Sprite::Create(textureHandle_, {0, 0});
 }
 

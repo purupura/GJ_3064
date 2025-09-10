@@ -1,6 +1,7 @@
 #include "ClearScene.h"
 #include "GameScene.h"
 #include "TitleScene.h"
+#include "OverScene.h"
 #include <KamataEngine.h>
 #include <Windows.h>
 
@@ -12,7 +13,8 @@ enum class Scene {
 
 	kTitle, // タイトルシーン
 	kGame,  // ゲームシーン
-	kClear
+	kClear,
+	kOver //ゲームオーバー
 };
 
 void ChangeScene();
@@ -26,6 +28,9 @@ TitleScene* titleScene = nullptr; // タイトルシーンのポインタ
 
 // クリアシーン
 ClearScene* clearScene = nullptr; // クリアシーンのポインタ
+
+//ゲームオーバーシーン
+OverScene* overScene = nullptr;
 
 Scene scene = Scene::kUnknown; // 現在のシーンを表す変数
 
@@ -90,6 +95,10 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	// クリアシーンの初期化
 	clearScene = new ClearScene();
 	clearScene->Initialize();
+
+	//ゲームオーバーシーン初期化
+	overScene = new OverScene();
+	overScene->Initialize();
 
 	// シーンをタイトルシーンに設定
 	scene = Scene::kTitle;
@@ -157,6 +166,9 @@ void UpdateScene() {
 	case Scene::kClear:
 		clearScene->Update();
 		break;
+	case Scene::kOver:
+		overScene->Update();
+		break;
 	}
 }
 
@@ -172,6 +184,9 @@ void DrawScene() {
 
 	case Scene::kClear:
 		clearScene->Draw();
+		break;
+	case Scene::kOver:
+		overScene->Draw();
 		break;
 	}
 }
@@ -201,6 +216,15 @@ void ChangeScene() {
 		if (clearScene && clearScene->IsGameFinished()) {
 			delete clearScene;
 			clearScene = nullptr;
+			scene = Scene::kTitle;
+			titleScene = new TitleScene();
+			titleScene->Initialize();
+		}
+		break;
+	case Scene::kOver:
+		if (overScene && overScene->IsGameFinished()) {
+			delete overScene;
+			overScene = nullptr;
 			scene = Scene::kTitle;
 			titleScene = new TitleScene();
 			titleScene->Initialize();
