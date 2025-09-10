@@ -3,6 +3,7 @@
 #include "KamataEngine.h"
 #include "WorldDimensionSwitching.h"
 #include "Player.h"
+#include "EnemyBullet.h"
 
 
 using namespace KamataEngine;
@@ -30,6 +31,7 @@ public:
 	void Draw();
 
 	bool IsFinished() const { return isFinished_; }
+	bool IsOver() const { return isOver_; }
 
 private:
 	DirectXCommon* dxCommon_ = nullptr;
@@ -38,11 +40,13 @@ private:
 	Camera* camera_ = nullptr;
 	Enemy* enemy_ = nullptr;
 	Player* player_ = nullptr;
+	EnemyBullet* enemyBullet_ = nullptr;
 
 	uint32_t textureHandle_ = 0;
 	Sprite* backGroundSprite_ = nullptr;
 	uint32_t textureHandle2_ = 0;
 	Sprite* frontFrameSprite_ = nullptr;
 	bool isFinished_ = false;
+	bool isOver_ = false;
 	float Cleartime_ = 60.0f*60.0f;
 };

@@ -20,18 +20,21 @@ void GameScene::Initialize() {
 	player_ = new Player();
 
 	player_->Initialize();
+
 }
+
 
 void GameScene::Update() {
 	// ビュープロジェクションの初期化
 	// camera_.Initialize();
 	Cleartime_--;
-	if (Cleartime_<=0) {
+	if (Cleartime_ <= 0) {
 		isFinished_ = true;
 	}
 
 	enemy_->Update();
 	player_->Update();
+
 }
 
 void GameScene::Draw() {

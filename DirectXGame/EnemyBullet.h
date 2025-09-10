@@ -19,6 +19,17 @@ public:
 
 	enum class Phase { first, second,therd };
 
+	// 位置を返す関数を追加
+	Vector2 GetPosition() const { return sprite_->GetPosition(); }
+	Vector2 GetAnotherPosition() const { return sprite2_->GetPosition(); }
+
+	// もしくは弾の当たり判定用の矩形を返す
+	Vector2 GetSize() const { return {1280.0f, 100.0f}; }
+
+	Vector2 posi = {0, 0};
+	Vector2 AnotherBulletPos = {0, 0};
+
+	bool CheckCollision(Vector2 playerPos, float playerRadius);
 
 private:
 	WorldTransform worldTransform_;

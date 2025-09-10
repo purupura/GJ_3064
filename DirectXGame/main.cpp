@@ -211,6 +211,13 @@ void ChangeScene() {
 			clearScene = new ClearScene();
 			clearScene->Initialize();
 		}
+		if (gameScene && gameScene->IsOver()) {
+			delete gameScene;
+			gameScene = nullptr;
+			scene = Scene::kOver;
+			overScene = new OverScene();
+			overScene->Initialize();
+		}
 		break;
 	case Scene::kClear:
 		if (clearScene && clearScene->IsGameFinished()) {

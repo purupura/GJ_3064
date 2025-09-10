@@ -28,6 +28,15 @@ public:
 	void approach();
 	void AnotherApproach();
 
+	EnemyBullet* GetEnemyBullet() const { return enemyBullet_; }
+	AnotherEnemyBullet* GetAnotherEnemyBullet() const { return anotherEnemyBullet_; }
+ 
+
+	
+	Vector2 EnemyPosition_ = {0.0f, 0.0f};
+
+
+
 private:
 	WorldTransform worldTransform_;
 	DirectXCommon* dxCommon_ = nullptr;
@@ -41,8 +50,6 @@ private:
 	Input* input_ = nullptr;
 
 	Phase phase_ = Phase::Approach;
-
-	Vector2 EnemyPosition_ = {0.0f, 0.0f};
 
 
 	EnemyBullet* enemyBullet_ = nullptr;	

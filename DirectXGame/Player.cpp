@@ -45,7 +45,7 @@ void Player::Update() {
 			PlayerPosition_.x += speed; // 右
 		}
 	}
-
+	// 変更した座標をスプライトに反映
 	sprite_->SetPosition(PlayerPosition_);
 	sprite2_->SetPosition(PlayerPosition_);
 
@@ -99,6 +99,7 @@ void Player::Fire() {
 	bulletPos2.x += 50.0f;
 
 }
+
 
 // void Player::CheckCollision(Vector2 posA, float radiusA, Vector2 posB, float radiusB)
 //{
