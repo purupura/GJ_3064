@@ -44,4 +44,5 @@ private:
 	uint32_t textureHandle2_ = 0;
 	Sprite* frontFrameSprite_ = nullptr;
 	bool isFinished_ = false;
+	float Cleartime_ = 60.0f*60.0f;
 };

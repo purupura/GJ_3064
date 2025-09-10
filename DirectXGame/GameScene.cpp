@@ -25,7 +25,8 @@ void GameScene::Initialize() {
 void GameScene::Update() {
 	// ビュープロジェクションの初期化
 	// camera_.Initialize();
-	if (input_->TriggerKey(DIK_SPACE)) {
+	Cleartime_--;
+	if (Cleartime_<=0) {
 		isFinished_ = true;
 	}
 
