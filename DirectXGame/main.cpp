@@ -47,7 +47,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 
 	// ゲームウィンドウの作成
 	win = WinApp::GetInstance();
-	win->CreateGameWindow(L"げぇむじゃむ");
+	win->CreateGameWindow(L"3064_Limina");
 
 	// DirectX初期化処理
 	dxCommon = DirectXCommon::GetInstance();
